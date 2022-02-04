@@ -1,56 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/Todolist.css";
 
-const Todolist = () => {
+const Todolist = (props) => {
+	const [list, setlist] = useState([]);
+	const [tarea, setTarea] = useState("");
+
+	const HandleSubmit = (ev) => {
+		ev.preventDefault();
+		setlist([...list, tarea]);
+		document.getElementsByClassName;
+		console.log(list);
+	};
+
 	return (
 		<>
-			<div className="lista">
-				<h1> To-do list</h1>
-				<div class="form-check">
+			<div className="todo-list">
+				<h1>To-do list</h1>
+				<form onSubmit={HandleSubmit}>
 					<input
-						class="form-check-input"
-						type="checkbox"
-						value=""
-						id="flexCheckDefault"
+						className="vacio"
+						onChange={(ev) => setTarea(ev.target.value)}
+						type="text"
+						placeholder="text"
 					/>
-					<label class="form-check-label" for="flexCheckDefault">
-						<h3> Limpiar la casa</h3>
-					</label>
-				</div>
-				<div class="form-check">
-					<input
-						class="form-check-input"
-						type="checkbox"
-						value=""
-						id="flexCheckChecked"
-						checked
-					/>
-					<label class="form-check-label" for="flexCheckChecked">
-						<h3>Imprimir las guías </h3>
-					</label>
-				</div>
-				<div class="form-check">
-					<input
-						class="form-check-input"
-						type="checkbox"
-						value=""
-						id="flexCheckDefault"
-					/>
-					<label class="form-check-label" for="flexCheckDefault">
-						<h3> Sacar al perro</h3>
-					</label>
-				</div>
-				<div class="form-check">
-					<input
-						class="form-check-input"
-						type="checkbox"
-						value=""
-						id="flexCheckDefault"
-					/>
-					<label class="form-check-label" for="flexCheckDefault">
-						<h3> Comprar el periódico</h3>
-					</label>
-				</div>
+					<button type="submit"> Agregar tarea</button>
+				</form>
+				{list.map((item, index) => (
+					<div key={index}>
+						<span>{item}</span>
+					</div>
+				))}
 			</div>
 		</>
 	);
