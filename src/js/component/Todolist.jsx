@@ -8,8 +8,12 @@ const Todolist = (props) => {
 	const HandleSubmit = (ev) => {
 		ev.preventDefault();
 		setlist([...list, tarea]);
-		document.getElementsByClassName;
+		setTarea("");
 		console.log(list);
+	};
+	const Delete = (item) => {
+		setlist(list.filter((itemcito) => item != itemcito));
+		console.log(index);
 	};
 
 	return (
@@ -19,19 +23,27 @@ const Todolist = (props) => {
 				<form onSubmit={HandleSubmit}>
 					<input
 						className="vacio"
-						onChange={(ev) => setTarea(ev.target.value)}
+						value={tarea}
+						onChange={(ev) => {
+							setTarea(ev.target.value);
+						}}
 						type="text"
 						placeholder="text"
 					/>
 					<button type="submit"> Agregar tarea</button>
 				</form>
-				{list.map((item, index) => (
-					<div key={index}>
-						<span>{item}</span>
-					</div>
-				))}
+				<div>
+					{list.map((item, index) => (
+						<div id={index}>
+							<span>{item}</span>
+
+							<button onClick={() => Delete(item)}>Borrar</button>
+						</div>
+					))}
+				</div>
 			</div>
 		</>
 	);
 };
+
 export default Todolist;
