@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/Todolist.css";
 
-const Todolist = (props) => {
+const Todolist = () => {
 	const [list, setlist] = useState([]);
 	const [tarea, setTarea] = useState("");
 
 	const HandleSubmit = (ev) => {
 		ev.preventDefault();
-		setlist([...list, tarea]);
-		setTarea("");
-		console.log(list);
+		if (tarea != "") {
+			setlist([...list, tarea]);
+			setTarea("");
+			console.log(list);
+		}
 	};
 	const Delete = (item) => {
 		setlist(list.filter((itemcito) => item != itemcito));
